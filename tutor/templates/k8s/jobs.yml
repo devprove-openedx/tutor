@@ -9,9 +9,11 @@ spec:
   template:
     spec:
       restartPolicy: Never
+{{ patch("k8s-job-spec") | indent(6, first=True) }}
       containers:
       - name: lms
         image: {{ DOCKER_IMAGE_OPENEDX }}
+{{ patch("k8s-job-containers") | indent(8, first=True) }}
         env:
         - name: SERVICE_VARIANT
           value: lms
@@ -45,9 +47,11 @@ spec:
   template:
     spec:
       restartPolicy: Never
+{{ patch("k8s-job-spec") | indent(6, first=True) }}
       containers:
       - name: cms
         image: {{ DOCKER_IMAGE_OPENEDX }}
+{{ patch("k8s-job-containers") | indent(8, first=True) }}
         env:
         - name: SERVICE_VARIANT
           value: cms
@@ -81,8 +85,10 @@ spec:
   template:
     spec:
       restartPolicy: Never
+{{ patch("k8s-job-spec") | indent(6, first=True) }}
       containers:
       - name: mysql
         image: {{ DOCKER_IMAGE_MYSQL }}
-
+{{ patch("k8s-job-containers") | indent(8, first=True) }}
+        
 {{ patch("k8s-jobs") }}
