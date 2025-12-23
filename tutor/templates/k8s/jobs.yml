@@ -13,7 +13,6 @@ spec:
       containers:
       - name: lms
         image: {{ DOCKER_IMAGE_OPENEDX }}
-        {{ patch("k8s-job-containers") | indent(8) }}
         env:
         - name: SERVICE_VARIANT
           value: lms
@@ -26,6 +25,7 @@ spec:
             name: settings-cms
           - mountPath: /openedx/config
             name: config
+      {{ patch("k8s-job-containers") | indent(6) }}
       volumes:
       - name: settings-lms
         configMap:
@@ -51,7 +51,6 @@ spec:
       containers:
       - name: cms
         image: {{ DOCKER_IMAGE_OPENEDX }}
-        {{ patch("k8s-job-containers") | indent(8) }}
         env:
         - name: SERVICE_VARIANT
           value: cms
@@ -64,6 +63,7 @@ spec:
             name: settings-cms
           - mountPath: /openedx/config
             name: config
+      {{ patch("k8s-job-containers") | indent(6) }}
       volumes:
       - name: settings-lms
         configMap:
@@ -89,6 +89,6 @@ spec:
       containers:
       - name: mysql
         image: {{ DOCKER_IMAGE_MYSQL }}
-        {{ patch("k8s-job-containers") | indent(8) }}
+      {{ patch("k8s-job-containers") | indent(6) }}
         
 {{ patch("k8s-jobs") }}
